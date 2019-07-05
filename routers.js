@@ -1,6 +1,7 @@
 const StockController = require('./controllers/stock_controller');
 const UsersController = require('./controllers/users_controller');
 const VisitorController = require('./controllers/visitor_controller');
+const LussController = require('./controllers/luss_controller');
 
 module.exports = app => {
   // UsersController
@@ -12,4 +13,8 @@ module.exports = app => {
   app.get('/api/sector/:sector', StockController.stockBySector);
   // VisitorController
   app.post('/api/visitor', VisitorController.createVisitor);
+  // LussController
+  app.get('/api/luss-items', LussController.getItems);
+  app.get('/api/luss-items/:id', LussController.getItemsById);
+  app.post('/api/luss-items', LussController.createitem);
 };
