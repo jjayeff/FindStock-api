@@ -14,7 +14,7 @@ module.exports = app => {
   // VisitorController
   app.post('/api/visitor', VisitorController.createVisitor);
   // LussController
-  app.get('/api/luss-items', LussController.getItems);
-  app.get('/api/luss-items/:id', LussController.getItemsById);
-  app.post('/api/luss-items', LussController.createitem);
+  app.get('/api/luss', LussController.getItems);
+  app.get('/api/luss/:id', LussController.getItemsById);
+  app.post('/api/luss', LussController.createitem);
 };
