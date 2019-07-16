@@ -111,6 +111,18 @@ module.exports = {
     } catch (err) {
       res.status(404).send({ error: err });
     }
+  },
+  async getUserByAccessToken(req, res) {
+    var result;
+    var sql = `SELECT id,firstName,lastName,email,gender,address,tel,dob FROM luss_users WHERE accessToken = '${
+      req.params.accessToken
+    }'`;
+    try {
+      result = await pool.query(sql);
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
+    res.send(result);
   }
 };
 
