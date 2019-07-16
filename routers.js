@@ -17,4 +17,6 @@ module.exports = app => {
   app.get('/api/luss', LussController.getItems);
   app.get('/api/luss/:id', LussController.getItemsById);
   app.post('/api/luss', LussController.createitem);
+  app.post('/api/luss/users/create', LussController.createUser);
+  app.post('/api/luss/users/login', LussController.Login);
 };
