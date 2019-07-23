@@ -127,7 +127,6 @@ module.exports = {
   async getCartById(req, res) {
     var result;
     var sql = `SELECT * FROM luss_carts WHERE user_id = ${req.params.id}`;
-    console.log(sql);
     try {
       result = await pool.query(sql);
     } catch (err) {
