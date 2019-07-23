@@ -20,4 +20,6 @@ module.exports = app => {
   app.post('/api/luss/users/create', LussController.createUser);
   app.post('/api/luss/users/login', LussController.Login);
   app.get('/api/luss/user/:accessToken', LussController.getUserByAccessToken);
+  app.post('/api/luss/carts/create', LussController.createCart);
+  app.get('/api/luss/carts/:id', LussController.getCartById);
 };

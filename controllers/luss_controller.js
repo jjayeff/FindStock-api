@@ -123,6 +123,41 @@ module.exports = {
       res.status(404).send({ error: err });
     }
     res.send(result);
+  },
+  async getCartById(req, res) {
+    var result;
+    var sql = `SELECT * FROM luss_carts WHERE user_id = ${req.params.id}`;
+    console.log(sql);
+    try {
+      result = await pool.query(sql);
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
+    res.send(result);
+  },
+  async createCart(req, res) {
+    var result;
+
+    var sql =
+      `INSERT INTO luss_carts (color, complete, delivery, id, quantity, size, detail_id, user_id) ` +
+      `VALUES ` +
+      `(${req.body.color ? `'${req.body.color}'` : 'null'}, ` +
+      `${req.body.complete ? `'${req.body.complete}'` : 'null'}, ` +
+      `${req.body.delivery ? `'${req.body.delivery}'` : 'null'}, ` +
+      `${req.body.id ? `'${req.body.id}'` : 'null'}, ` +
+      `${req.body.quantity ? `'${req.body.quantity}'` : 'null'}, ` +
+      `${req.body.size ? `'${req.body.size}'` : 'null'}, ` +
+      `${req.body.detail_id ? `'${req.body.detail_id}'` : 'null'}, ` +
+      `${req.body.user_id ? `'${req.body.user_id}'` : 'null'}) `;
+    try {
+      result = await pool.query(sql);
+      res.send({
+        message: `1 record inserted, ID: ${result.insertId}`,
+        result
+      });
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
   }
 };
 
