@@ -157,6 +157,34 @@ module.exports = {
     } catch (err) {
       res.status(404).send({ error: err });
     }
+  },
+  async editCart(req, res) {
+    var result;
+    var sql = `UPDATE luss_carts SET quantity = ${
+      req.body.quantity
+    } WHERE id = '${req.body.id}'  `;
+    try {
+      result = await pool.query(sql);
+      res.send({
+        message: `update row, ID: ${req.body.id}`,
+        result
+      });
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
+  },
+  async deleteCart(req, res) {
+    var result;
+    var sql = `DELETE FROM  luss_carts WHERE id = '${req.params.id}'  `;
+    try {
+      result = await pool.query(sql);
+      res.send({
+        message: `delete row, ID: ${req.params.id}`,
+        result
+      });
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
   }
 };
 
