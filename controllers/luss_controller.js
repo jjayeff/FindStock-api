@@ -166,8 +166,7 @@ module.exports = {
       `size = '${req.body.size}', ` +
       `complete = ${req.body.complete} ` +
       `WHERE id = '${req.body.id}'`;
-    res.send(sql);
-    /*try {
+    try {
       result = await pool.query(sql);
       res.send({
         message: `update row, ID: ${req.body.id}`,
@@ -175,7 +174,7 @@ module.exports = {
       });
     } catch (err) {
       res.status(404).send({ error: err });
-    }*/
+    }
   },
   async deleteCart(req, res) {
     var result;
