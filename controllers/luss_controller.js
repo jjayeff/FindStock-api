@@ -160,10 +160,14 @@ module.exports = {
   },
   async editCart(req, res) {
     var result;
-    var sql = `UPDATE luss_carts SET quantity = ${
-      req.body.quantity
-    } WHERE id = '${req.body.id}'  `;
-    try {
+    var sql =
+      `UPDATE luss_carts SET ` +
+      `quantity = ${req.body.quantity}, ` +
+      `size = '${req.body.size}', ` +
+      `complete = ${req.body.complete} ` +
+      `WHERE id = '${req.body.id}'`;
+    res.send(sql);
+    /*try {
       result = await pool.query(sql);
       res.send({
         message: `update row, ID: ${req.body.id}`,
@@ -171,7 +175,7 @@ module.exports = {
       });
     } catch (err) {
       res.status(404).send({ error: err });
-    }
+    }*/
   },
   async deleteCart(req, res) {
     var result;
