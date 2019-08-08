@@ -76,10 +76,11 @@ module.exports = {
       `${`'${accessToken}'`}) `;
     try {
       result = await pool.query(sql);
-      res.send({
-        message: `1 record inserted, ID: ${result.insertId}`,
-        result
-      });
+      var sql = `SELECT accessToken FROM luss_users WHERE email = '${
+        req.body.email
+      }'`;
+      result = await pool.query(sql);
+      res.send(result[0]);
     } catch (err) {
       res.status(404).send({ error: err });
     }
