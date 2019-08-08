@@ -60,7 +60,7 @@ module.exports = {
     const accessToken = getNewAccessToken(req.body.email, 'LUSS_OFFICIAL_KEY');
 
     var sql =
-      `INSERT INTO luss_users (firstName, lastName, email, password, gender, address, tel, dob, accessToken) ` +
+      `INSERT INTO luss_users (firstName, lastName, email, password, gender, address, tel, dob, province, district, postalcode, accessToken ) ` +
       `VALUES ` +
       `(${req.body.firstName ? `'${req.body.firstName}'` : 'null'}, ` +
       `${req.body.lastName ? `'${req.body.lastName}'` : 'null'}, ` +
@@ -70,6 +70,9 @@ module.exports = {
       `${req.body.address ? `'${req.body.address}'` : 'null'}, ` +
       `${req.body.tel ? `'${req.body.tel}'` : 'null'}, ` +
       `${req.body.dob ? `'${req.body.dob}'` : 'null'}, ` +
+      `${req.body.province ? `'${req.body.province}'` : 'null'}, ` +
+      `${req.body.district ? `'${req.body.district}'` : 'null'}, ` +
+      `${req.body.postalcode ? `'${req.body.postalcode}'` : 'null'}, ` +
       `${`'${accessToken}'`}) `;
     try {
       result = await pool.query(sql);
@@ -80,6 +83,18 @@ module.exports = {
     } catch (err) {
       res.status(404).send({ error: err });
     }
+  },
+
+  async findUserEmail(req, res) {
+    var result;
+    var sql = `SELECT * FROM luss_users WHERE email = '${req.params.email}'`;
+    try {
+      result = await pool.query(sql);
+      result = result.length > 0 ? { isUnique: 1 } : { isUnique: 0 };
+    } catch (err) {
+      res.status(404).send({ error: err });
+    }
+    res.send(result);
   },
 
   async Login(req, res) {
