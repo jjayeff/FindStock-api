@@ -21,8 +21,15 @@ module.exports = app => {
   app.post('/api/luss/users/login', LussController.Login);
   app.get('/api/luss/user/:accessToken', LussController.getUserByAccessToken);
   app.get('/api/luss/user/check/:email', LussController.findUserEmail);
+  app.put('/api/luss/user/profile/:email', LussController.editUserProfile);
+  app.put('/api/luss/user/address/:email', LussController.editUserAddress);
+  app.put('/api/luss/user/password/:email', LussController.editUserPassword);
+  app.get(
+    '/api/luss/user/check/:email/:password',
+    LussController.findUserPassword
+  );
+  app.get('/api/luss/carts/:id', LussController.getCartById);
   app.post('/api/luss/carts/create', LussController.createCart);
   app.put('/api/luss/carts/edit', LussController.editCart);
   app.delete('/api/luss/carts/delete/:id', LussController.deleteCart);
-  app.get('/api/luss/carts/:id', LussController.getCartById);
 };
