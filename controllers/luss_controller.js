@@ -130,7 +130,7 @@ module.exports = {
   },
   async getUserByAccessToken(req, res) {
     var result;
-    var sql = `SELECT id,firstName,lastName,email,gender,address,tel,dob FROM luss_users WHERE accessToken = '${
+    var sql = `SELECT id,firstName,lastName,email,gender,address,tel,dob,province,district,postalcode FROM luss_users WHERE accessToken = '${
       req.params.accessToken
     }'`;
     try {
