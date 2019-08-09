@@ -1,5 +1,4 @@
 const jwt = require('jwt-simple');
-const md5 = require('md5');
 var pool = require('../database');
 
 module.exports = {
@@ -74,7 +73,7 @@ module.exports = {
       `(${req.body.firstName ? `'${req.body.firstName}'` : 'null'}, ` +
       `${req.body.lastName ? `'${req.body.lastName}'` : 'null'}, ` +
       `${req.body.email ? `'${req.body.email}'` : 'null'}, ` +
-      `${req.body.password ? `'${md5(req.body.password)}'` : 'null'}, ` +
+      `${req.body.password ? `'${req.body.password}'` : 'null'}, ` +
       `${req.body.gender ? `'${req.body.gender}'` : 'null'}, ` +
       `${req.body.address ? `'${req.body.address}'` : 'null'}, ` +
       `${req.body.tel ? `'${req.body.tel}'` : 'null'}, ` +
@@ -101,7 +100,7 @@ module.exports = {
     var result;
     var sql = `SELECT accessToken FROM luss_users WHERE email = '${
       req.body.email
-    }' AND password = '${md5(req.body.password)}' `;
+    }' AND password = '${req.body.password}' `;
     try {
       result = await pool.query(sql);
       if (result.length) {
@@ -228,7 +227,7 @@ module.exports = {
     var result;
     var sql = `SELECT * FROM luss_users WHERE email = '${
       req.params.email
-    }' AND password = '${md5(req.params.password)}'`;
+    }' AND password = '${req.params.password}'`;
     try {
       result = await pool.query(sql);
       result = result.length > 0 ? { isCorrect: 1 } : { isCorrect: 0 };
