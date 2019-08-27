@@ -2,9 +2,9 @@ const mysql = require('mysql');
 var util = require('util');
 
 var pool = mysql.createPool({
-  host: 'ekkawitl.cmspp4j0ajle.ap-southeast-2.rds.amazonaws.com',
+  host: 'ekkawit-mysql.cmspp4j0ajle.ap-southeast-2.rds.amazonaws.com',
   user: 'root',
-  password: 'password',
+  password: 'Ekk1120300068864',
   database: 'application'
 });
 
