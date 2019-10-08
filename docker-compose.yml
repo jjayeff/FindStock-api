@@ -10,6 +10,6 @@ services:
       - .:/usr/src/app
     environment:
       - MYSQL_HOST=ilada-mysql.cmspp4j0ajle.ap-southeast-2.rds.amazonaws.com
-      - MYSQL_USER=root
+      - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=Ekk1120300068864ilada
       - MYSQL_DATABASE=stocks
