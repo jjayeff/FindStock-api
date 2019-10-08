@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 var util = require('util');
+require('dotenv').config();
 
 var pool = mysql.createPool({
-  host: 'ekkawit-mysql.cmspp4j0ajle.ap-southeast-2.rds.amazonaws.com',
-  user: 'root',
-  password: 'Ekk1120300068864',
-  database: 'application'
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
 });
 
 pool.getConnection((err, connection) => {
